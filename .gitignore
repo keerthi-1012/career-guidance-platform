@@ -23,3 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 "src/assets/*.pdf" 
+"src/assets/*.pdf" 
+src/assets/*.pdf 
