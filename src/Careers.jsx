@@ -1,16 +1,22 @@
 // src/Careers.jsx
-import React, { useState } from 'react';
-import './Careers.css';
+import React, { useState } from "react";
+import "./Careers.css";
 
 const CATEGORIES = [
-  "All Categories", "Technology", "Business", "Creative", "Healthcare", "Finance", "Engineering"
+  "All Categories",
+  "Technology",
+  "Business",
+  "Creative",
+  "Healthcare",
+  "Finance",
+  "Engineering",
 ];
 
 const CAREERS = [
   {
     name: "Software Developer",
     category: "Technology",
-    img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    img: "/software1.jpeg", // stored inside public/
   },
   {
     name: "Data Analyst",
@@ -46,37 +52,43 @@ const CAREERS = [
     name: "Mechanical Engineer",
     category: "Engineering",
     img: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5",
-  }
+  },
 ];
 
 export default function Careers() {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
-  const filteredCareers = CAREERS.filter(c =>
-    (selectedCategory === "All Categories" || c.category === selectedCategory) &&
-    c.name.toLowerCase().includes(search.toLowerCase())
+  const filteredCareers = CAREERS.filter(
+    (c) =>
+      (selectedCategory === "All Categories" ||
+        c.category === selectedCategory) &&
+      c.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div className="careers-page">
       <h2>Explore Career Paths</h2>
+
       <div className="subtitle">
         Discover diverse careers that match your interests and skills
       </div>
+
       <input
         className="search-careers"
         type="text"
         placeholder="Search careers..."
         value={search}
-        onChange={e => setSearch(e.target.value)}
+        onChange={(e) => setSearch(e.target.value)}
       />
 
       <div className="category-filters">
-        {CATEGORIES.map(cat => (
+        {CATEGORIES.map((cat) => (
           <button
             key={cat}
-            className={cat === selectedCategory ? "filter-btn active" : "filter-btn"}
+            className={
+              cat === selectedCategory ? "filter-btn active" : "filter-btn"
+            }
             onClick={() => setSelectedCategory(cat)}
           >
             {cat}
@@ -84,9 +96,12 @@ export default function Careers() {
         ))}
       </div>
 
-      <div className="career-count">Showing {filteredCareers.length} careers</div>
+      <div className="career-count">
+        Showing {filteredCareers.length} careers
+      </div>
+
       <div className="careers-grid">
-        {filteredCareers.map(career => (
+        {filteredCareers.map((career) => (
           <div className="career-card" key={career.name}>
             <img src={career.img} alt={career.name} />
             <span className="career-category">{career.category}</span>
